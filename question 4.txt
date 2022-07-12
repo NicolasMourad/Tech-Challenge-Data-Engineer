@@ -1,0 +1,5 @@
+SELECT customer.last_name, customer.first_name, COUNT(DISTINCT rental.rental_id) AS nombre_de_location, address.address, address.city, address.postal_code,address_clean.latitude, address_clean.longitude, address.address_id FROM customer 
+INNER JOIN address ON address.address_id = customer.address_id
+INNER JOIN rental ON rental.customer_id = customer.customer_id
+INNER JOIN address_clean ON address_clean.address_id = address.address_id
+GROUP BY customer.customer_id ORDER BY nombre_de_location DESC LIMIT 1
